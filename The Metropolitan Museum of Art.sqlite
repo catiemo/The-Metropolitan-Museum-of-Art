@@ -1,0 +1,49 @@
+-- Viewing all columns of met table
+SELECT *
+FROM met
+LIMIT 10;
+
+-- Number of pieces in American Decorative Art collection
+SELECT COUNT(*)
+FROM met;
+
+-- Number of pieces where category includes celery
+SELECT COUNT(*)
+FROM met
+WHERE category LIKE '%celery%';
+
+-- Distinct celery categories
+SELECT DISTINCT category
+FROM met
+WHERE category LIKE '%celery%';
+
+-- Oldest time range
+SELECT MIN(date)
+FROM met;
+
+-- Title and Medium of the oldest pieces in the collection
+SELECT title, medium, date
+FROM met
+WHERE date LIKE '%1600%';
+
+-- Top 10 countries with most pieces in the collection
+SELECT country, COUNT(*)
+FROM met
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 10;
+
+-- Categories having more than 100 pieces
+SELECT category, COUNT(*)
+FROM met
+GROUP BY 1
+HAVING COUNT(*) > 100
+ORDER BY COUNT(*) DESC;
+
+-- Number of pieces where the medium contains ‘gold’ or ‘silver’
+SELECT medium, COUNT(*)
+FROM met
+WHERE medium LIKE '%gold%'
+OR medium LIKE '%silver%'
+GROUP BY 1
+ORDER BY 2 DESC;
